@@ -35,9 +35,24 @@ local function Gotogh()
 
     local filePath = removeBasePath(file, basePath)
 
-    local cmd = "open " .. url .. "/blob/" .. branch .. "/" .. filePath .. "#L" .. line
+    local ghUrl = url .. "/blob/" .. branch .. "/" .. filePath .. "#L" .. line
 
-    os.execute(cmd)
+    -- isBrowserEnvAvailable
+    if vim.fn.exists("$BROWSER") == 1 then
+        local cmd = "bash -c '" .. os.getenv("BROWSER") .. " " .. ghUrl .. " 2>/dev/null'"
+        os.execute(cmd)
+        return
+    end
+    
+    -- isOpenAvailable
+    if vim.fn.has("mac") == 1 then
+        local cmd = "open " .. ghUrl
+        os.execute(cmd)
+        return
+    end
+
+    print("No browser available. Click: " .. ghUrl)
+    return
 end
 
 local function setup()
