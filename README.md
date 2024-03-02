@@ -1,6 +1,6 @@
 # gotogh.nvim
 
-Open the currently open file on a Github page with line numbers
+Open the file, commit, or PR at the current cursor line on the GitHub page.
 
 ## install
 
@@ -15,12 +15,16 @@ When you're using linux, you have to set `BROWSER` environment variable to speci
 ## usage
 
 ```
-:Gotogh
+:Gotogh // Open file with current linenumber
+:GotoghCommit // Open commit
+:GotoghPr // Search pr
 ```
 
 ## osusume
 
 ```
 noremap go <Cmd>Gotogh<CR>
+noremap gc <Cmd>GotoghCommit<CR>
+noremap gp <Cmd>GotoghPr<CR>
 ```
 
