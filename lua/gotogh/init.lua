@@ -62,6 +62,7 @@ local function Gotogh(mode)
     local url = exec("git config remote.origin.url")
 
     if string.find(url, "@") then
+        url = string.gsub(url, "ssh://", "")
         url = string.gsub(url, ":", "/")
         url = string.gsub(url, "git@", "https://")
         url = string.gsub(url, ".git$", "")
